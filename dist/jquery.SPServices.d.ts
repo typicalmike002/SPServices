@@ -137,6 +137,34 @@ declare module JQuerySPServices {
             /** If true, show error messages;if false, run silent */
             debug?: boolean;
         }): void;
+
+        /**
+         * SPGetListItemsJson
+         */
+        SPGetListItemsJson(options: {
+            /** [Optional] The URL of the Web (site) which contains the list. If not specified, the current site is used. Examples would be: "/", "/Accounting", "/Departments/HR", etc. Note: It's always best to use relative URLs. */
+            webURL?: string;
+            /** [Optional] The name or GUID of the list which contains the parent/child relationships. If you choose to use the GUID, it should look like: "{E73FEA09-CF8F-4B30-88C7-6FA996EE1706}". Note also that if you use the GUID, you do not need to specify the webURL if the list is in another site. */
+            listName?: string;
+            /** [Optional] The CAMLQuery option allows you to specify the filter on the list. CAMLQuery here should contain valid CAML such as: */
+            CAMLQuery?: string;
+            /** [Optional] If specified, only the columns in CAMLViewFields plus some other required columns are retrieved. This can be very important if your list has a lot of columns, as it can reduce the amount of data returned from the call.  */
+            CAMLViewFields?: string;
+            /** [Optional] This option can be used to limit the number of items retrieved from the list. */
+            CAMLRowLimit?: string;
+            /** [Optional] This option can be used to specify additional options for retrieval from the list. */
+            CAMLQueryOptions?: string;
+            /** [Optional] GetListItemChangesSinceToken passes back a changeToken on each call. If you are making calls after the initial one and pass in the changeToken value, only the changes since that token will be retrieved. */
+            changeToken?: string;
+            /** [Optional] This option allows you to pass in an additional filter for the request. It should be a valid CAML clause. */
+            contains?: string;
+            /** [Optional] If you have created your own mapping, as specified in SPXmltoJson, pass it as this option. If present, the function will use your mapping and ignore the list schema returned by GetListItemChangesSinceToken. */
+            mapping?: Object;
+            /** [Optional] If you want the function to use the list schema returned by GetListItemChangesSinceToken for the majority of the columns but you would like to specify your own mapping for some of the columns, pass those mappings in using the mappingOverrides option. */
+            mappingOverrides?: Object;
+            /** [Optional] Specify if you would like to enable debug mode.  Defaults to false. */
+            debug?: Boolean;
+        });
     }
 }
 
